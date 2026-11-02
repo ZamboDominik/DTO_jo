@@ -12,8 +12,17 @@ namespace GlobalExceptionHandler
             builder.Services.AddControllers();
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddOpenApi();
+            builder.Services.AddExceptionHandler<GlobalExceptionHandlerEx>();
+            builder.Services.AddProblemDetails();
+
+
 
             var app = builder.Build();
+
+
+            // Bekapcsoljuk a globális hibakezelő middleware-t
+            app.UseExceptionHandler();
+
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
